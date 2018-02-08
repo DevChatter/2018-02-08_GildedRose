@@ -4,7 +4,7 @@ using Xunit;
 
 namespace UnitTests.InventoryStatusUpdaterTests
 {
-    public class UpdateQualityShould_GivenNormalItem
+    public class GivenNormalItem_UpdateQualityShould
     {
         [Fact]
         public void RunWithoutError()
