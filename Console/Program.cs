@@ -24,9 +24,9 @@ namespace DevChatter.GildedRose.Console
                 new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
 
-            var app = new NoNameYet();
+            var updater = new InventoryStatusUpdater();
 
-            app.UpdateQuality(Items);
+            updater.UpdateQuality(Items);
 
             System.Console.ReadKey();
 
@@ -34,7 +34,7 @@ namespace DevChatter.GildedRose.Console
 
     }
 
-    public class NoNameYet
+    public class InventoryStatusUpdater
     {
         public void UpdateQuality(IList<Item> Items)
         {
