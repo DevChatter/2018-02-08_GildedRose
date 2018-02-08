@@ -23,7 +23,7 @@ namespace UnitTests.InventoryStatusUpdaterTests
             var items = new List<Item> {normalItem};
             statusUpdater.UpdateQuality(items);
 
-            Assert.Equal(normalItem.Quality, normalItem.Quality - 1);
+            Assert.Equal(19, normalItem.Quality);
         }
     }
 }
