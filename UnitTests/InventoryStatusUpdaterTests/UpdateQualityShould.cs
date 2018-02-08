@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using DevChatter.GildedRose.Console;
 using Xunit;
 
-namespace UnitTests
+namespace UnitTests.InventoryStatusUpdaterTests
 {
     public class UpdateQualityShould
     {
