@@ -4,18 +4,23 @@ namespace DevChatter.GildedRose.Console
 {
     public class InventoryStatusUpdater
     {
+        private const string BackstagePassItemName = "Backstage passes to a TAFKAL80ETC concert";
+        private const string AgedBrieItemName = "Aged Brie";
+        private const string SulfurasItemName = "Sulfuras, Hand of Ragnaros";
+        private const string ConjuredItemPrefix = "Conjured";
+
         public void UpdateQuality(IList<Item> items)
         {
             foreach (var item in items)
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (item.Name != AgedBrieItemName && item.Name != BackstagePassItemName)
                 {
                     if (item.Quality > 0)
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        if (item.Name != SulfurasItemName)
                         {
                             item.Quality = item.Quality - 1;
-                            if (item.Name.StartsWith("Conjured") && item.Quality > 0)
+                            if (item.Name.StartsWith(ConjuredItemPrefix) && item.Quality > 0)
                             {
                                 item.Quality -= 1;
                             }
@@ -28,7 +33,7 @@ namespace DevChatter.GildedRose.Console
                     {
                         item.Quality = item.Quality + 1;
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name == BackstagePassItemName)
                         {
                             if (item.SellIn < 11)
                             {
@@ -49,23 +54,23 @@ namespace DevChatter.GildedRose.Console
                     }
                 }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (item.Name != SulfurasItemName)
                 {
                     item.SellIn = item.SellIn - 1;
                 }
 
                 if (item.SellIn < 0)
                 {
-                    if (item.Name != "Aged Brie")
+                    if (item.Name != AgedBrieItemName)
                     {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name != BackstagePassItemName)
                         {
                             if (item.Quality > 0)
                             {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                                if (item.Name != SulfurasItemName)
                                 {
                                     item.Quality = item.Quality - 1;
-                                    if (item.Name.StartsWith("Conjured") && item.Quality > 0)
+                                    if (item.Name.StartsWith(ConjuredItemPrefix) && item.Quality > 0)
                                     {
                                         item.Quality -= 1;
                                     }
