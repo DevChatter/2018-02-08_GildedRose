@@ -6,34 +6,32 @@ namespace UnitTests.InventoryStatusUpdaterTests
 {
     public class GivenNormalItem_UpdateQualityShould
     {
+        private InventoryStatusUpdater _statusUpdater = new InventoryStatusUpdater();
+
         [Fact]
         public void RunWithoutError()
         {
-            var statusUpdater = new InventoryStatusUpdater();
-
-            statusUpdater.UpdateQuality(new List<Item>());
+            _statusUpdater.UpdateQuality(new List<Item>());
         }
 
         [Fact]
-        public void LowerQuality()
+        public void LowerQualityByOne()
         {
-            var statusUpdater = new InventoryStatusUpdater();
             var normalItem = new Item { Name = "Normal Normal", Quality = 20, SellIn = 10 };
             var items = new List<Item> {normalItem};
 
-            statusUpdater.UpdateQuality(items);
+            _statusUpdater.UpdateQuality(items);
 
             Assert.Equal(19, normalItem.Quality);
         }
 
         [Fact]
-        public void LowerSellIn()
+        public void LowerSellInByOne()
         {
-            var statusUpdater = new InventoryStatusUpdater();
             var normalItem = new Item { Name = "Normal Normal", Quality = 20, SellIn = 10 };
             var items = new List<Item> {normalItem};
 
-            statusUpdater.UpdateQuality(items);
+            _statusUpdater.UpdateQuality(items);
 
             Assert.Equal(9, normalItem.SellIn);
         }
@@ -41,12 +39,11 @@ namespace UnitTests.InventoryStatusUpdaterTests
         [Fact]
         public void FloorQualityAtZero()
         {
-            var statusUpdater = new InventoryStatusUpdater();
             var normalItem = new Item { Name = "Normal Normal", Quality = 1, SellIn = 10 };
             var items = new List<Item> {normalItem};
 
-            statusUpdater.UpdateQuality(items);
-            statusUpdater.UpdateQuality(items);
+            _statusUpdater.UpdateQuality(items);
+            _statusUpdater.UpdateQuality(items);
 
             Assert.Equal(0, normalItem.Quality);
         }
@@ -65,7 +62,7 @@ namespace UnitTests.InventoryStatusUpdaterTests
         }
 
         [Fact]
-        public void DecreaseQualityTwiceAsFastAfterSellInReachesZero()
+        public void DecreaseQualityByTwoAfterSellInReachesZero()
         {
             var statusUpdater = new InventoryStatusUpdater();
             var normalItem = new Item { Name = "Normal Normal", Quality = 50, SellIn = 1 };
